@@ -4,9 +4,36 @@
 #import module
 import cv2
 
-#open camera
-cap=cv2.VideoCapture(0)
-ret,background=cap.read()#read the first image as background
+BACKSIZE=24
+
+# name    : getAverageImage
+# function: get average image
+# input   : the list of images
+# output  : an average image
+def getAverageImage(imgList):
+    averageImage=[[0 for x in range(imgList[0].height)]for y in range(imgList[0].width)]
+    if isinstance(imgList, list) is False:
+        print("the parameter input is not a list!\n")
+        exit(0)
+    for x in range(imgList[0].height):
+        for y in range(imgList[0].width):
+            for n in range(BACKSIZE):
+                  pixel=imgList[n][x,y]+pixel
+            pixel=pixel/BACKSIZE
+            averageImage[x,y]=pixel
+    return averageImage
+    
+
+#define background list
+backGroundList[]
+
+#make background
+for i in range(BACKSIZE):
+    cap=cv2.VideoCapture(0)
+    ret,backFrame=cap.read()
+    backGroundList.append(backFrame)  #read a frame of background and store it
+
+
 if background is None:
     print("background is empty!\n")
     exit(0)
